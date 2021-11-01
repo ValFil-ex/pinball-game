@@ -4,23 +4,23 @@ public class NoCreditState implements GameStateInterface {
 
 
     @Override
-    public void enterState(CurrentGameState currentGameState) {
-        System.out.println("Your credit is 0. Please insert a coin");
+    public void enterState(CurrentGame currentGame) {
+        System.out.println("Your current credit is 0. Please insert a coin");
     }
 
     @Override
-    public void onInsertCoin(CurrentGameState currentGameState) {
-        currentGameState.setPinballGameState(new ReadyState());
-        currentGameState.getPinballGameState().enterState(currentGameState);
+    public void onInsertCoin(CurrentGame currentGame) {
+        currentGame.setPinballGameState(new ReadyState());
+        currentGame.getPinballGameState().enterState(currentGame);
     }
 
     @Override
-    public void onStart(CurrentGameState currentGameState) {
+    public void onStart(CurrentGame currentGame) {
         System.out.println("No credit. Please insert a coin");
     }
 
     @Override
-    public void onGameOver(CurrentGameState currentGameState) {
+    public void onGameOver(CurrentGame currentGame) {
 
     }
 

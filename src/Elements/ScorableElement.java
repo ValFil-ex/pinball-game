@@ -1,9 +1,11 @@
 package Elements;
 
+import GameStates.CurrentGame;
+
 public abstract class ScorableElement {
     int score;
 
-    abstract void score();
+    public abstract void score();
 
 
 }

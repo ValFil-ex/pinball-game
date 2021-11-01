@@ -4,25 +4,25 @@ public class ReadyState implements GameStateInterface {
 
 
     @Override
-    public void enterState(CurrentGameState currentGameState) {
-        int credits = currentGameState.getCredits();
-        System.out.printf("Your credit is %d. Press start to begin the play \n", credits);
+    public void enterState(CurrentGame currentGame) {
+        int credits = currentGame.getCredits();
+        System.out.printf("Your current credit is %d. Press start to begin the play \n", credits);
     }
 
     @Override
-    public void onInsertCoin(CurrentGameState currentGameState) {
-        currentGameState.setPinballGameState(new ReadyState());
-        enterState(currentGameState);
+    public void onInsertCoin(CurrentGame currentGame) {
+        currentGame.setPinballGameState(new ReadyState());
+        enterState(currentGame);
     }
 
     @Override
-    public void onStart(CurrentGameState currentGameState) {
-        currentGameState.setPinballGameState(new PlayingState());
-        currentGameState.getPinballGameState().enterState(currentGameState);
+    public void onStart(CurrentGame currentGame) {
+        currentGame.setPinballGameState(new PlayingState());
+        currentGame.getPinballGameState().enterState(currentGame);
     }
 
     @Override
-    public void onGameOver(CurrentGameState currentGameState) {
+    public void onGameOver(CurrentGame currentGame) {
 
     }
 

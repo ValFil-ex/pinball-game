@@ -1,17 +1,18 @@
 package Elements;
 
-import GameStates.CurrentGameState;
+import GameStates.CurrentGame;
 
-public class Bumper extends ScorableElement {
+public class Bumper extends ScorableElement{
 
     private int points  = 200;
-    CurrentGameState currentGameState;
+    CurrentGame currentGame;
 
-    public Bumper(CurrentGameState currentGameState) {
-        this.currentGameState = currentGameState;
+    public Bumper(CurrentGame currentGame) {
+        this.currentGame = currentGame;
     }
 
     public void score() {
-        this.currentGameState.changeScore(points);
+        this.currentGame.changeScore(points);
+        System.out.printf("You've just scored %d points!\n", points);
     }
 }

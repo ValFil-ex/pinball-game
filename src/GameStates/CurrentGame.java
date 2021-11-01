@@ -1,23 +1,26 @@
 package GameStates;
 
-public class CurrentGameState {
+import Elements.ScorableElement;
+
+public class CurrentGame{
     //there is only one instance of the pinball game existing
-    private static CurrentGameState instance;
+    private static CurrentGame instance;
     private String username;
 
     private int credits = 0;
     private GameStateInterface pinballstate;
 
     private int score = 0;
+    private int timesLost = 0;
 
 
-    private CurrentGameState(String username){
+    private CurrentGame(String username){
         this.username = username;
     }
 
-    public static CurrentGameState startGame(String username){
+    public static CurrentGame startGame(String username){
         if(instance == null){
-            instance = new CurrentGameState(username);
+            instance = new CurrentGame(username);
         }
         instance.turnOn();
         return instance;
@@ -44,6 +47,10 @@ public class CurrentGameState {
         return score;
     }
 
+    public int getTimesLost() {
+        return timesLost;
+    }
+
     //state changing operations delegated to state classes as per State pattern
     public void turnOn(){
         System.out.println("Hello, " + this.username);
@@ -62,11 +69,13 @@ public class CurrentGameState {
     }
 
     public void gameOver(){
-        pinballstate.onGameOver(this);
+        timesLost +=1;
+            pinballstate.onGameOver(this);
     }
 
 
     public void changeScore(int points) {
         this.score += points;
     }
+
 }
