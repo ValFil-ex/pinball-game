@@ -1,16 +1,13 @@
 package Actions;
 
-import Elements.Bumper;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class HitBumper implements Action {
-
+public class HitTarget implements Action{
 
     private List<Action> actions;
 
-    public HitBumper(){
+    public HitTarget(){
         this.actions = new ArrayList<>();
     }
 

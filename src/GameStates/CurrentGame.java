@@ -1,7 +1,5 @@
 package GameStates;
 
-import Elements.ScorableElement;
-
 public class CurrentGame{
     //there is only one instance of the pinball game existing
     private static CurrentGame instance;
@@ -78,4 +76,7 @@ public class CurrentGame{
         this.score += points;
     }
 
+    public void score(int points) {
+        score+=points;
+    }
 }

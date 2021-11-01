@@ -1,4 +1,4 @@
-import Elements.ScorableElement;
+import Elements.PlayfieldElement;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,11 +7,11 @@ public class PlayField {
 
     private static PlayField instance;
 
-    private List<ScorableElement> scorableElements;
+    private List<PlayfieldElement> playfieldElements;
 
     private PlayField(){
 
-        this.scorableElements = new ArrayList<>();
+        this.playfieldElements = new ArrayList<>();
     }
 
     public static PlayField initialisePlayfield(){
@@ -21,8 +21,8 @@ public class PlayField {
         return instance;
     }
 
-    public void add (ScorableElement e){
-        scorableElements.add(e);
+    public void add (PlayfieldElement e){
+        playfieldElements.add(e);
     }
 
 
