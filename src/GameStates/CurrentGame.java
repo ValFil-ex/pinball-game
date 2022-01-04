@@ -1,17 +1,15 @@
 package GameStates;
 
-import Elements.Bumper;
-import Elements.PlayField;
+import java.util.Scanner;
 
 public class CurrentGame{
     //there is only one instance of the pinball game existing
     private static CurrentGame instance;
     private String username;
+    Scanner scanner = new Scanner(System.in);
 
     private int credits = 0;
-    private int totalScore = 0;
     private int timesLost = 0;
-    private boolean rampOpen = false;
 
     private GameStateInterface pinballstate;
 
@@ -52,8 +50,14 @@ public class CurrentGame{
     }
 
     public void insertCoin(int a){
-        this.credits+=a;
-        pinballstate.onInsertCoin(this);
+
+        int coins = scanner.nextInt();
+        if(coins>0){
+            this.credits+=coins;
+            pinballstate.onInsertCoin(this);
+        }else{
+            pinballstate.enterState(this);
+        }
     }
 
     public void startGame(){

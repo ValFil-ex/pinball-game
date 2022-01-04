@@ -1,18 +1,35 @@
 package Elements;
 
 public class Ramp implements PlayfieldElement{
-    private boolean open = false;
+    private int score;
+    private String name;
+    private int points;
+    private boolean isOpen;
 
+    public int getScore() {
+        return score;
+    }
 
+    public boolean isOpen() {
+        return isOpen;
+    }
 
-
-    @Override
-    public int score() {
-        return 0;
+    public Ramp(String name, boolean isOpen, int points) {
+        this.name = name;
+        this.isOpen = isOpen;
+        this.points = points;
     }
 
     @Override
-    public int getScore() {
-        return 0;
+    public int score() {
+        int assignedPoints;
+        if(isOpen){
+            assignedPoints = points;
+        }else{
+            isOpen = true;
+            assignedPoints = 0;
+        }
+        score += assignedPoints;
+        return assignedPoints;
     }
 }

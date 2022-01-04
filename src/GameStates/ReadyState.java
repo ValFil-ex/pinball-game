@@ -1,12 +1,15 @@
 package GameStates;
 
+import java.util.Scanner;
+
 public class ReadyState implements GameStateInterface {
 
-
+    Scanner scanner = new Scanner(System.in);
     @Override
     public void enterState(CurrentGame currentGame) {
         int credits = currentGame.getCredits();
         System.out.printf("Your current credit is %d. Press start to begin the play \n", credits);
+
     }
 
     @Override

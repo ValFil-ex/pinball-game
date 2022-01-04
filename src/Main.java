@@ -8,46 +8,67 @@
 *
 * */
 
-import Actions.HitBumper;
-import Actions.HitTarget;
-import Actions.ScoreBumperPoints;
-import Actions.ScorePoints;
-import Elements.Ball;
-import Elements.Bumper;
-import Elements.PlayField;
-import Elements.Target;
+import Actions.*;
+import Elements.*;
 import GameStates.CurrentGame;
+
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        String username;
 
+        Scanner scanner = new Scanner(System.in);
         //singleton pattern used in Playfield class since only one instance of the playfield can exist at a time
         PlayField field = PlayField.initialisePlayfield();
 
         //singleton pattern used in CurrentGameState class since only one instance of the pinball game can exist at a time
         //1 turn on pinball game
-        CurrentGame currentGame = CurrentGame.startGame("Valeriya");
+        System.out.println("Please enter your name: \n");
+        username = scanner.nextLine();
+        CurrentGame currentGame = CurrentGame.startGame(username);
 
 
         //2 initialise playfield
         Ball ball = new Ball();
         Bumper bumper1 = new Bumper("Bumper 1", 200);
         Target target1 = new Target("Target 1", 400);
+        Ramp bigRamp = new Ramp("BigRamp", false, 150);
         field.add(bumper1);
         field.add(target1);
+        field.add(bigRamp);
 
         HitBumper hitBumperAction = new HitBumper();
         hitBumperAction.addAction(new ScorePoints(bumper1));
 
         HitTarget hitTarget = new HitTarget();
         hitTarget.addAction(new ScorePoints(target1));
+        hitTarget.addAction(new OpenRamp(bigRamp));
 
-        ball.hit(hitBumperAction);
-        ball.hit(hitBumperAction);
-        ball.hit(hitTarget);
+        RunRamp runRamp = new RunRamp(bigRamp);
+
+        //3insert coins to top up credits
 
 
-        System.out.println("your current score is" + field.getElementsScore());
+        currentGame.insertCoin(0);
+
+
+
+        //4 start the game pressed
+        //currentGame.startGame();
+
+        //5 game process
+
+
+
+        ball.execute(hitBumperAction);
+        ball.execute(hitBumperAction);
+        ball.execute(runRamp);
+        ball.execute(hitTarget);
+        ball.execute(runRamp);
+
+
+        System.out.println("your current score is " + field.getElementsScore());
 
 
 
@@ -67,11 +88,7 @@ public class Main {
 
 
 
-        //3insert coins to top up credits
-        currentGame.insertCoin(3);
 
-        //4 start the game pressed
-        currentGame.startGame();
 
         //5 flipper hits the ball
         //@TODO some logic to simulate the random ball movement,  like Math.random()

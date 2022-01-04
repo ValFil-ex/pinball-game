@@ -8,7 +8,7 @@ public class PlayField {
     private static PlayField instance;
     public int totalScore;
 
-    public List<PlayfieldElement>playfieldElements = new ArrayList<>();
+    private List<PlayfieldElement>playfieldElements = new ArrayList<>();
 
     private PlayField(){
 
