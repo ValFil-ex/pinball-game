@@ -30,22 +30,20 @@ public class Main {
         Bumper bumper2 = new Bumper("Bumper 2");
         playfield.add(bumper1);
         playfield.add(bumper2);
-        HitBumper hitBumper = new HitBumper();
-        ScoreBumperPoints scoreBumper = new ScoreBumperPoints(currentGame);
-        hitBumper.addAction(scoreBumper);
+        HitBumper hitBumperAndScore = new HitBumper();
 
-        Target target = new Target("Target 1");
-        playfield.add(target);
-        ScoreTargetPoints scoreTarget = new ScoreTargetPoints(currentGame);
+
+        Target target1 = new Target("Target 1");
+        playfield.add(target1);
         HitTarget hitTarget = new HitTarget();
+
+
 
 
         Ramp ramp = new Ramp("Ramp 1");
         playfield.add(ramp);
         OpenRamp openRamp = new OpenRamp(currentGame);
 
-        hitTarget.addAction(scoreTarget);
-        hitTarget.addAction(openRamp);
 
 
         //3insert coins to top up credits
@@ -59,9 +57,11 @@ public class Main {
 
 
         //6 some element hit by the ball - score in currentGame increased
-        bumper1.executeCommand(hitBumper);
-        bumper2.executeCommand(hitBumper);
-        target.executeCommand(hitTarget); //hitTarget launches increases score + opens ramp-> composite + command pattern
+        hitBumperAndScore.addAction(new ScoreBumperPoints(currentGame));
+        bumper1.executeCommand(hitBumperAndScore);
+        //bumper2.executeCommand(hitBumper);
+        hitTarget.addAction(new ScoreTargetPoints(currentGame));
+        target1.executeCommand(hitTarget); //hitTarget launches increases score + opens ramp-> composite + command pattern
 
 
         //5 flipper hits the ball

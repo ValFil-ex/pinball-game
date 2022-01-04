@@ -2,6 +2,9 @@ package Elements;
 
 import Actions.Action;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PlayfieldElement {
 
     protected final String name;
@@ -13,6 +16,7 @@ public class PlayfieldElement {
 
     public void executeCommand(Action action){
         action.execute();
+
     };
 
 }

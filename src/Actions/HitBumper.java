@@ -8,11 +8,8 @@ import java.util.List;
 public class HitBumper implements Action {
 
 
-    private List<Action> actions;
+    private List<Action> actions = new ArrayList<>();
 
-    public HitBumper(){
-        this.actions = new ArrayList<>();
-    }
 
     @Override
     public void execute() {

@@ -5,11 +5,8 @@ import java.util.List;
 
 public class HitTarget implements Action{
 
-    private List<Action> actions;
+    private List<Action> actions = new ArrayList<>();
 
-    public HitTarget(){
-        this.actions = new ArrayList<>();
-    }
 
     @Override
     public void execute() {
