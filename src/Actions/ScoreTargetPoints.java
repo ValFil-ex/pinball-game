@@ -3,8 +3,8 @@ package Actions;
 import GameStates.CurrentGame;
 
 public class ScoreTargetPoints implements Action{
-    CurrentGame currentGame;
-    int points = 500;
+    private CurrentGame currentGame;
+    private int points = 500;
 
     public ScoreTargetPoints(CurrentGame currentGame){
         this.currentGame = currentGame;

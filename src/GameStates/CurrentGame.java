@@ -6,11 +6,10 @@ public class CurrentGame{
     private String username;
 
     private int credits = 0;
-    private GameStateInterface pinballstate;
-
     private int score = 0;
     private int timesLost = 0;
 
+    private GameStateInterface pinballstate;
 
     private CurrentGame(String username){
         this.username = username;
@@ -29,23 +28,19 @@ public class CurrentGame{
         this.pinballstate = pinballstate;
     }
 
-    public GameStateInterface getPinballGameState() {
+    protected GameStateInterface getPinballGameState() {
         return pinballstate;
     }
 
-    public int getCredits() {
+    protected int getCredits() {
         return credits;
-    }
-
-    public String getUsername() {
-        return username;
     }
 
     public int getScore() {
         return score;
     }
 
-    public int getTimesLost() {
+    protected int getTimesLost() {
         return timesLost;
     }
 
@@ -71,10 +66,6 @@ public class CurrentGame{
             pinballstate.onGameOver(this);
     }
 
-
-    public void changeScore(int points) {
-        this.score += points;
-    }
 
     public void score(int points) {
         score+=points;

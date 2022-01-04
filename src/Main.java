@@ -42,7 +42,7 @@ public class Main {
 
         Ramp ramp = new Ramp("Ramp 1");
         playfield.add(ramp);
-        OpenRamp openRamp = new OpenRamp(ramp);
+        OpenRamp openRamp = new OpenRamp(currentGame);
 
         hitTarget.addAction(scoreTarget);
         hitTarget.addAction(openRamp);
@@ -79,19 +79,6 @@ public class Main {
         System.out.println(currentGame.getScore());
 
 
-
-
-
-
-       /*
-        Elements.Target target = new Elements.Target();
-        int score = controller.executeCommand(new Actions.HitTarget(target));
-        pinballGame.setScore(score);*/
-
-        /*
-        Elements.Target target = new Elements.Target();
-        target.executeCommand(new Actions.HitTarget(currentGame));
-        */
 
     }
 }

@@ -7,12 +7,4 @@ public class Ramp extends PlayfieldElement{
         super(name);
     }
 
-
-    public void changeState(){
-        if(!open){
-          open = true;
-            System.out.println("Ramp is open now");
-        }
-
-    }
 }

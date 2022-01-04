@@ -1,17 +1,18 @@
 package Actions;
 
 import Elements.Ramp;
+import GameStates.CurrentGame;
 
 public class OpenRamp implements Action{
+    CurrentGame currentGame;
+    boolean open = false;
 
-    Ramp ramp;
-
-    public OpenRamp(Ramp ramp) {
-        this.ramp = ramp;
+    public OpenRamp(CurrentGame currentGame) {
+        this.currentGame = currentGame;
     }
 
     @Override
     public void execute() {
-        ramp.changeState();
+
     }
 }

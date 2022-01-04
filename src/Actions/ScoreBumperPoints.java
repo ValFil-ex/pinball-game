@@ -7,8 +7,8 @@ import java.util.ArrayList;
 
 public class ScoreBumperPoints implements Action{
 
-    CurrentGame currentGame;
-    int points = 200;
+    private CurrentGame currentGame;
+    private int points = 200;
 
     public ScoreBumperPoints(CurrentGame currentGame){
         this.currentGame = currentGame;
