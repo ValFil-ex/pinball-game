@@ -1,7 +1,5 @@
 package Actions;
 
-import Elements.Bumper;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +8,10 @@ public class HitBumper implements Action {
 
     private List<Action> actions = new ArrayList<>();
 
+
+    public HitBumper() {
+
+    }
 
     @Override
     public void execute() {

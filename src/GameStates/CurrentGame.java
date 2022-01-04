@@ -1,12 +1,15 @@
 package GameStates;
 
+import Elements.Bumper;
+import Elements.PlayField;
+
 public class CurrentGame{
     //there is only one instance of the pinball game existing
     private static CurrentGame instance;
     private String username;
 
     private int credits = 0;
-    private int score = 0;
+    private int totalScore = 0;
     private int timesLost = 0;
     private boolean rampOpen = false;
 
@@ -37,10 +40,6 @@ public class CurrentGame{
         return credits;
     }
 
-    public int getScore() {
-        return score;
-    }
-
     protected int getTimesLost() {
         return timesLost;
     }
@@ -65,15 +64,5 @@ public class CurrentGame{
     public void gameOver(){
         timesLost +=1;
         pinballstate.onGameOver(this);
-    }
-
-
-    public void score(int points) {
-        score+=points;
-    }
-
-    public void openRamp() {
-        rampOpen = true;
-        System.out.println("you have opened the ramp!");
     }
 }

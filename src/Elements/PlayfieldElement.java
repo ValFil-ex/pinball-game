@@ -5,18 +5,11 @@ import Actions.Action;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PlayfieldElement {
+public interface PlayfieldElement {
 
-    protected final String name;
-    public Action action;
 
-    public PlayfieldElement(String name){
-        this.name = name;
-    };
+    int score();
 
-    public void executeCommand(Action action){
-        action.execute();
-
-    };
+    int getScore();
 
 }

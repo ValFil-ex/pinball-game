@@ -1,4 +1,4 @@
-import Elements.PlayfieldElement;
+package Elements;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,12 +6,12 @@ import java.util.List;
 public class PlayField {
 
     private static PlayField instance;
+    public int totalScore;
 
-    private List<PlayfieldElement> playfieldElements;
+    public List<PlayfieldElement>playfieldElements = new ArrayList<>();
 
     private PlayField(){
 
-        this.playfieldElements = new ArrayList<>();
     }
 
     public static PlayField initialisePlayfield(){
@@ -26,7 +26,10 @@ public class PlayField {
     }
 
 
-
-
-
+    public int getElementsScore() {
+        for (PlayfieldElement playfieldElement : playfieldElements){
+            totalScore += playfieldElement.getScore();
+        }
+        return totalScore;
+    }
 }

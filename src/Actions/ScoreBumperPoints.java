@@ -7,17 +7,15 @@ import java.util.ArrayList;
 
 public class ScoreBumperPoints implements Action{
 
-    private CurrentGame currentGame;
-    private int points = 200;
+    private Bumper bumper;
 
-    public ScoreBumperPoints(CurrentGame currentGame){
-        this.currentGame = currentGame;
-
+    public ScoreBumperPoints(Bumper bumper){
+        this.bumper = bumper;
     }
 
     @Override
     public void execute() {
-        currentGame.score(points);
+        int points = bumper.score();
         System.out.printf("You've just scored %d points!\n", points);
     }
 }

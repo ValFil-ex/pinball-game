@@ -12,6 +12,6 @@ public class OpenRamp implements Action{
 
     @Override
     public void execute() {
-        currentGame.openRamp();
+
     }
 }

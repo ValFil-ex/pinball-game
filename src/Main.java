@@ -2,47 +2,68 @@
 * Singlton - to initialise CurrentGame
 * Singlton - to initialise Playfield
 * state pattern - to change states in CurrentGame (Gamestates package)
-* Command pattern - to assign commands  when a ball hits some element; Aufrufer: target (e.g. Bumper) -> KonkreterBefehl: action object (e.g.
-*   HitBumper) -> Empfänger: operation() (e.g. currentGame.score()
-* Composite patters - to build more complex command (together with command patter). E.g. HitBumper launched OpenRamp and ScoreBumperPoints
+* Command pattern - to assign commands  when a ball hits some element; invoker: ball -> concrete command: action object (e.g.
+*   HitBumper) -> receiver: playfield element (e.g. bumper)
+* Composite patters - to build more complex command (together with command pattern). E.g. HitBumper launched OpenRamp and ScoreBumperPoints
 *
 * */
 
-import Actions.*;
+import Actions.HitBumper;
+import Actions.HitTarget;
+import Actions.ScoreBumperPoints;
+import Actions.ScorePoints;
 import Elements.Ball;
 import Elements.Bumper;
-import Elements.Ramp;
+import Elements.PlayField;
 import Elements.Target;
 import GameStates.CurrentGame;
 
 public class Main {
     public static void main(String[] args) {
 
+        //singleton pattern used in Playfield class since only one instance of the playfield can exist at a time
+        PlayField field = PlayField.initialisePlayfield();
+
         //singleton pattern used in CurrentGameState class since only one instance of the pinball game can exist at a time
         //1 turn on pinball game
         CurrentGame currentGame = CurrentGame.startGame("Valeriya");
 
-        //singleton pattern used in Playfield class since only one instance of the playfield can exist at a time
 
-        //2 initialise playfield @TODO : to wrap up in some initializer method? playfield.initialize()
-        PlayField playfield = PlayField.initialisePlayfield();
-        Bumper bumper1 = new Bumper("Bumper 1");
-        Bumper bumper2 = new Bumper("Bumper 2");
-        playfield.add(bumper1);
-        playfield.add(bumper2);
-        HitBumper hitBumperAndScore = new HitBumper();
+        //2 initialise playfield
+        Ball ball = new Ball();
+        Bumper bumper1 = new Bumper("Bumper 1", 200);
+        Target target1 = new Target("Target 1", 400);
+        field.add(bumper1);
+        field.add(target1);
 
+        HitBumper hitBumperAction = new HitBumper();
+        hitBumperAction.addAction(new ScorePoints(bumper1));
 
-        Target target1 = new Target("Target 1");
-        playfield.add(target1);
         HitTarget hitTarget = new HitTarget();
+        hitTarget.addAction(new ScorePoints(target1));
+
+        ball.hit(hitBumperAction);
+        ball.hit(hitBumperAction);
+        ball.hit(hitTarget);
+
+
+        System.out.println("your current score is" + field.getElementsScore());
 
 
 
 
-        Ramp ramp = new Ramp("Ramp 1");
-        playfield.add(ramp);
-        OpenRamp openRamp = new OpenRamp(currentGame);
+        //HitBumper hitBumperAndScore = new HitBumper();
+
+
+
+
+        //HitTarget hitTarget = new HitTarget();
+
+
+
+
+
+        //OpenRamp openRamp = new OpenRamp(currentGame);
 
 
 
@@ -57,11 +78,11 @@ public class Main {
 
 
         //6 some element hit by the ball - score in currentGame increased
-        hitBumperAndScore.addAction(new ScoreBumperPoints(currentGame));
-        bumper1.executeCommand(hitBumperAndScore);
+        //hitBumperAndScore.addAction(new ScoreBumperPoints(currentGame));
+        //bumper1.executeCommand(hitBumperAndScore);
         //bumper2.executeCommand(hitBumper);
-        hitTarget.addAction(new ScoreTargetPoints(currentGame));
-        target1.executeCommand(hitTarget); //hitTarget launches increases score + opens ramp-> composite + command pattern
+        //hitTarget.addAction(new ScoreTargetPoints(currentGame));
+        //target1.executeCommand(hitTarget); //hitTarget launches increases score + opens ramp-> composite + command pattern
 
 
         //5 flipper hits the ball
@@ -75,8 +96,6 @@ public class Main {
         currentGame.gameOver();
         currentGame.gameOver();
         currentGame.gameOver();
-
-        System.out.println(currentGame.getScore());
 
 
 
