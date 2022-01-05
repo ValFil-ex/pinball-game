@@ -6,7 +6,7 @@ public class ReadyState implements GameStateInterface {
 
     Scanner scanner = new Scanner(System.in);
     @Override
-    public void enterState(CurrentGame currentGame) {
+    public void enterState(GameController currentGame) {
         int credits = currentGame.getCredits();
         int command;
         System.out.printf("Your current credit is %d. Press 1 to begin the play or any other number to exit \n", credits);
@@ -20,19 +20,19 @@ public class ReadyState implements GameStateInterface {
     }
 
     @Override
-    public void onInsertCoin(CurrentGame currentGame) {
+    public void onInsertCoin(GameController currentGame) {
         currentGame.setPinballGameState(new ReadyState());
         enterState(currentGame);
     }
 
     @Override
-    public void onStart(CurrentGame currentGame) {
+    public void onStart(GameController currentGame) {
         currentGame.setPinballGameState(new PlayingState());
         currentGame.getPinballGameState().enterState(currentGame);
     }
 
     @Override
-    public void onGameOver(CurrentGame currentGame) {
+    public void onGameOver(GameController currentGame) {
 
     }
 

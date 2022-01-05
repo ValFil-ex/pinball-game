@@ -2,7 +2,7 @@ package GameStates;
 import java.util.Scanner;
 public class EndState implements GameStateInterface{
     @Override
-    public void enterState(CurrentGame currentGame) {
+    public void enterState(GameController currentGame) {
         Scanner scanner = new Scanner(System.in);
         int totalScore = currentGame.getTotalScore();
 
@@ -20,17 +20,17 @@ public class EndState implements GameStateInterface{
     }
 
     @Override
-    public void onInsertCoin(CurrentGame currentGame) {
+    public void onInsertCoin(GameController currentGame) {
 
     }
 
     @Override
-    public void onStart(CurrentGame currentGame) {
+    public void onStart(GameController currentGame) {
         System.out.println("The game is already on! Watch the ball!");
     }
 
     @Override
-    public void onGameOver(CurrentGame currentGame) {
+    public void onGameOver(GameController currentGame) {
         System.out.println(" Oh no, you've lost the ball!\n");
         int credits = currentGame.getCredits();
         int totalScore = currentGame.getTotalScore();

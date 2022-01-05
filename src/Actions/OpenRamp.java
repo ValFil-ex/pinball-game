@@ -1,8 +1,6 @@
 package Actions;
 
-import Elements.Bumper;
 import Elements.Ramp;
-import GameStates.CurrentGame;
 
 public class OpenRamp implements Action{
     private Ramp ramp;

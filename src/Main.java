@@ -10,7 +10,7 @@
 
 import Actions.*;
 import Elements.*;
-import GameStates.CurrentGame;
+import GameStates.GameController;
 
 import java.util.Scanner;
 
@@ -57,7 +57,7 @@ public class Main {
         //4 initialise game controller currentGame;
         System.out.println("Please enter your name: \n");
         username = scanner.nextLine();
-        CurrentGame currentGame = CurrentGame.launchGame(username, field, ball);//initialises curentGame and sets it to NoCreditstate
+        GameController currentGame = GameController.launchGame(username, field, ball);//initialises curentGame and sets it to NoCreditstate
 
         /*5 insert coins -> in currentGame; noCreditState requests user input (inser coins)
          * - if provided changes currentGame to ReadyState

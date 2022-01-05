@@ -7,7 +7,7 @@ public class PlayingState implements GameStateInterface {
     int command;
 
     @Override
-    public void enterState(CurrentGame currentGame) {
+    public void enterState(GameController currentGame) {
         System.out.println("The play is on! Press 1 to hit the ball");
         int command = scanner.nextInt();
         if(command == 1){
@@ -17,18 +17,18 @@ public class PlayingState implements GameStateInterface {
     }
 
     @Override
-    public void onInsertCoin(CurrentGame currentGame) {
+    public void onInsertCoin(GameController currentGame) {
         int credits = currentGame.getCredits();
         System.out.printf("Your current credit is now %d. Watch the ball! The play is on! \n", credits);
     }
 
     @Override
-    public void onStart(CurrentGame currentGame) {
+    public void onStart(GameController currentGame) {
         System.out.println("The play is already on! watch the ball!");
     }
 
     @Override
-    public void onGameOver(CurrentGame currentGame) {
+    public void onGameOver(GameController currentGame) {
 
         System.out.println("Oh no, you have lost this ball!");
         int credits = currentGame.getCredits();

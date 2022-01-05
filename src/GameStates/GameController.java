@@ -5,10 +5,10 @@ import Elements.PlayField;
 
 import java.util.Scanner;
 
-public class CurrentGame{
+public class GameController {
     //there is only one instance of the pinball game existing
 
-    private static CurrentGame instance;
+    private static GameController instance;
     private String username;
     Scanner scanner = new Scanner(System.in);
 
@@ -22,15 +22,15 @@ public class CurrentGame{
 
     private int flipperHitResult = -1;
 
-    private CurrentGame(String username, PlayField playfield, Ball ball){
+    private GameController(String username, PlayField playfield, Ball ball){
         this.username = username;
         this. playfield = playfield;
         this.ball = ball;
     }
 
-    public static CurrentGame launchGame(String username, PlayField playfield, Ball ball){
+    public static GameController launchGame(String username, PlayField playfield, Ball ball){
         if(instance == null){
-            instance = new CurrentGame(username, playfield, ball);
+            instance = new GameController(username, playfield, ball);
         }
         instance.turnOn();
         return instance;

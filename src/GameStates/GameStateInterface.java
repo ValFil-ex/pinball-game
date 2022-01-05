@@ -2,11 +2,11 @@ package GameStates;
 
 public interface GameStateInterface {
 
-    void enterState(CurrentGame currentGame);
+    void enterState(GameController currentGame);
 
-    void onInsertCoin(CurrentGame currentGame);
-    void onStart(CurrentGame currentGame);
-    void onGameOver(CurrentGame currentGame);
+    void onInsertCoin(GameController currentGame);
+    void onStart(GameController currentGame);
+    void onGameOver(GameController currentGame);
 
 
 

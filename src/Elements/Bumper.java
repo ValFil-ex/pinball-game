@@ -1,8 +1,5 @@
 package Elements;
 
-import Actions.Action;
-import GameStates.CurrentGame;
-
 public class Bumper implements PlayfieldElement{
 
     private int score;
