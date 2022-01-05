@@ -12,4 +12,11 @@ public interface PlayfieldElement {
 
     int getScore();
 
+    void resetScore(); //when transition to next level
+
+    void resetElement(); //when game is over but playing session continues
+
+
+
+
 }

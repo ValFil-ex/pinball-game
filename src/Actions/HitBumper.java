@@ -16,6 +16,7 @@ public class HitBumper implements Action {
     @Override
     public void execute() {
         actions.forEach(Action::execute);
+        System.out.println("bumper was hit!");
     }
 
     public void addAction(Action action){

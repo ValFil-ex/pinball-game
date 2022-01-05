@@ -11,7 +11,7 @@ public class PlayingState implements GameStateInterface {
         System.out.println("The play is on! Press 1 to hit the ball");
         int command = scanner.nextInt();
         if(command == 1){
-            currentGame.calculateResult();
+            currentGame.hitFlipper();
         }
 
     }

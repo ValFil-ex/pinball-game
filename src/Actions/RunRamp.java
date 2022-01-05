@@ -15,7 +15,7 @@ public class RunRamp implements Action{
             System.out.printf("The ball bounced back - ramp is closed! Hit the target to open the ramp\n");
         }else{
             int points = ramp.score();
-            System.out.printf("You've just scored %d points!\n", points);
+            System.out.printf("You've just run the ramp and scored %d points!\n", points);
         }
     }
 }

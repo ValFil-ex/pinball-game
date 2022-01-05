@@ -13,6 +13,15 @@ public class Bumper implements PlayfieldElement{
         return score;
     }
 
+    public void resetScore(){
+        this.score = 0;
+    }
+
+    @Override
+    public void resetElement() {
+
+    }
+
     public Bumper(String name, int points) {
         this.name = name;
         this.points = points;

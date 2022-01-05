@@ -7,11 +7,13 @@ public class NoCreditState implements GameStateInterface {
 
     @Override
     public void enterState(CurrentGame currentGame) {
-        System.out.println("Your current credit is 0. Please insert a coin");
+        System.out.println("Your current credit is 0. Please insert a coin or press 0 to exit");
         int coins = scanner.nextInt();
 
         if(coins>0){
             currentGame.insertCoin(coins);
+        }else if(coins == 0){
+            currentGame.turnOff();
         }else{
             currentGame.turnOn();
         }

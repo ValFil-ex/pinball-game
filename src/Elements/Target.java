@@ -12,6 +12,15 @@ public class Target implements PlayfieldElement{
         return score;
     }
 
+    public void resetScore(){
+        this.score = 0;
+    }
+
+    @Override
+    public void resetElement() {
+
+    }
+
     public Target(String name, int points) {
         this.name = name;
         this.points = points;

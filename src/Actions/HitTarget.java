@@ -11,6 +11,7 @@ public class HitTarget implements Action{
     @Override
     public void execute() {
         actions.forEach(Action::execute);
+        System.out.println("target was hit!");
     }
 
     public void addAction(Action action){

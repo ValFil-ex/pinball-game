@@ -16,15 +16,15 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+
         String username;
-
-        int hitResult = 0;
-
         Scanner scanner = new Scanner(System.in);
-        //1initialise playfield
+
+        //1 initialise playfield
         PlayField field = PlayField.initialisePlayfield();
 
-        //2 add playfield elements and ball
+
+        //2 initialise playfield elements and ball; add to playfield
         Ball ball = new Ball();
         Bumper bumper1 = new Bumper("Bumper 1", 200);
         Target target1 = new Target("Target 1", 400);
@@ -33,112 +33,59 @@ public class Main {
         field.add(target1);
         field.add(bigRamp);
 
-        //3 initialise possible actions
-        HitBumper hitBumperAction = new HitBumper();
-        hitBumperAction.addAction(new ScorePoints(bumper1));
+        //3 initialise possible element actions; add to playfield
+        /* Actions:
+         * - hit bumper: points
+         * - hit target 1st time: 400 points and open ramp
+         * - hit ramp: if closed - 0 points; if open (by hitting the target) - 150 points. Once open, remains open until game over (4 balls)
+         * */
 
-        HitTarget hitTarget = new HitTarget();
-        hitTarget.addAction(new ScorePoints(target1));
-        hitTarget.addAction(new OpenRamp(bigRamp));
+        HitBumper hitBumper1 = new HitBumper();
+        hitBumper1.addAction(new ScorePoints(bumper1));
+
+        HitTarget hitTarget1 = new HitTarget();
+        hitTarget1.addAction(new ScorePoints(target1));//composite action
+        hitTarget1.addAction(new OpenRamp(bigRamp));//composite action
 
         RunRamp runRamp = new RunRamp(bigRamp);
 
+        field.setActions(hitBumper1);
+        field.setActions(hitTarget1);
+        field.setActions(runRamp);
 
-        //start the game
+
+        //4 initialise game controller currentGame;
         System.out.println("Please enter your name: \n");
         username = scanner.nextLine();
-        CurrentGame currentGame = CurrentGame.launchGame(username);
+        CurrentGame currentGame = CurrentGame.launchGame(username, field, ball);//initialises curentGame and sets it to NoCreditstate
+
+        /*5 insert coins -> in currentGame; noCreditState requests user input (inser coins)
+         * - if provided changes currentGame to ReadyState
+         * - else: exit.
+         */
 
 
-        //3 insert coins
+        /*6 start game -> in currentGame; ReadyState requests user input (press start)
+         * - if provided - > currentGame changes state to PlayingState;
+         * - else: exit.
+         */
 
 
-        //4 start game
+        /*7 flip -> in currentGame; PlayingState requests user input (flip)
+         * - if provided: currentGame generates random action index, finds matching action in playfield.elementsActions and passes to the ball to
+         *   execute
+         *- else: exit.*/
 
 
-        //5 calculate flip result
+        //8 game process ->in currentGame (changing states, execute actions, register score and times lost). Actions:
 
 
-
-        switch(hitResult){
-            case 1: ball.execute(hitBumperAction);
-            case 2: ball.execute(runRamp);
-            case 3: ball.execute(hitTarget);
-            default: break;
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-        //3insert coins to top up credits
-
-
-        //currentGame.insertCoin(0);
-
-
-
-        //4 start the game pressed
-        //currentGame.startGame();
-
-        //5 game process
-
-
-
-
-        System.out.println("your current score is " + field.getElementsScore());
-
-
-
-
-        //HitBumper hitBumperAndScore = new HitBumper();
-
-
-
-
-        //HitTarget hitTarget = new HitTarget();
-
-
-
-
-
-        //OpenRamp openRamp = new OpenRamp(currentGame);
-
-
-
-
-
-        //5 flipper hits the ball
-        //@TODO some logic to simulate the random ball movement,  like Math.random()
-
-
-        //6 some element hit by the ball - score in currentGame increased
-        //hitBumperAndScore.addAction(new ScoreBumperPoints(currentGame));
-        //bumper1.executeCommand(hitBumperAndScore);
-        //bumper2.executeCommand(hitBumper);
-        //hitTarget.addAction(new ScoreTargetPoints(currentGame));
-        //target1.executeCommand(hitTarget); //hitTarget launches increases score + opens ramp-> composite + command pattern
-
-
-        //5 flipper hits the ball
-        //@TODO some logic to simulate the random ball movement, like Math.random()
-
-        //7 ball lost - game over
-        //Ist eine Kugel 3-mal verloren gegangen, so wechseln sie in den End-State,
-        // bei welchem sie ein Spiel gewinnen können. Danach wechselt der Automat,
-        // je nach Kredit, in den No-Credit- bzw. Ready-Zustand
-        currentGame.gameOver();
-        currentGame.gameOver();
-        currentGame.gameOver();
-        currentGame.gameOver();
-
+        /*9 ball lost three times : enter Super Game (EndState) -> currentGame
+         * - if score>10.000 achieved - the game is won; score is reset, player gets one extra credit in return and can play level2 game (not
+         *   implemented)
+         * - if score<10.000 and ball is lost - game over (current score persists); player can add a credit (coin) to proceed and try to win the
+         *   game and go to next level
+         * */
 
 
     }
