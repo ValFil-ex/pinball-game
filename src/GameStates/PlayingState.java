@@ -1,9 +1,19 @@
 package GameStates;
 
+import java.util.Scanner;
+
 public class PlayingState implements GameStateInterface {
+    Scanner scanner = new Scanner(System.in);
+    int command;
+
     @Override
     public void enterState(CurrentGame currentGame) {
-        System.out.println("The play begins!");
+        System.out.println("The play is on! Press 1 to hit the ball");
+        int command = scanner.nextInt();
+        if(command == 1){
+            currentGame.calculateResult();
+        }
+
     }
 
     @Override
@@ -19,6 +29,7 @@ public class PlayingState implements GameStateInterface {
 
     @Override
     public void onGameOver(CurrentGame currentGame) {
+
         System.out.println("Oh no, you have lost this ball!");
         int credits = currentGame.getCredits();
         int timesLost = currentGame.getTimesLost();
@@ -26,17 +37,12 @@ public class PlayingState implements GameStateInterface {
         //Ist eine Kugel 3-mal verloren gegangen, so wechseln sie in den End-State,
         // bei welchem sie ein Spiel gewinnen können. Danach wechselt der Automat,
         // je nach Kredit, in den No-Credit- bzw. Ready-Zustand
-        if(timesLost>=3){
+        if(timesLost==3){
             currentGame.setPinballGameState(new EndState());
             currentGame.getPinballGameState().enterState(currentGame);
         }else{
-            if(credits!=0){
-                currentGame.setPinballGameState(new PlayingState());
-                currentGame.getPinballGameState().enterState(currentGame);
-            }else {
-                currentGame.setPinballGameState(new NoCreditState());
-                currentGame.getPinballGameState().enterState(currentGame);
-            }
+            currentGame.setPinballGameState(new PlayingState());
+            currentGame.getPinballGameState().enterState(currentGame);
         }
 
 

@@ -8,7 +8,13 @@ public class ReadyState implements GameStateInterface {
     @Override
     public void enterState(CurrentGame currentGame) {
         int credits = currentGame.getCredits();
-        System.out.printf("Your current credit is %d. Press start to begin the play \n", credits);
+        System.out.printf("Your current credit is %d. Press 1 to begin the play or 0 to exit \n", credits);
+        int command = scanner.nextInt();
+        if(command == 1){
+            currentGame.startGame();
+        }else{
+            //TODO implement return or exit
+        }
 
     }
 

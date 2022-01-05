@@ -1,12 +1,12 @@
 /*Pinball simulation
-* Singlton - to initialise CurrentGame
-* Singlton - to initialise Playfield
-* state pattern - to change states in CurrentGame (Gamestates package)
-* Command pattern - to assign commands  when a ball hits some element; invoker: ball -> concrete command: action object (e.g.
-*   HitBumper) -> receiver: playfield element (e.g. bumper)
-* Composite patters - to build more complex command (together with command pattern). E.g. HitBumper launched OpenRamp and ScoreBumperPoints
-*
-* */
+ * Singlton - to initialise CurrentGame
+ * Singlton - to initialise Playfield
+ * state pattern - to change states in CurrentGame (Gamestates package)
+ * Command pattern - to assign commands  when a ball hits some element; invoker: ball -> concrete command: action object (e.g.
+ *   HitBumper) -> receiver: playfield element (e.g. bumper)
+ * Composite patters - to build more complex command (together with command pattern). E.g. HitBumper launched OpenRamp and ScoreBumperPoints
+ *
+ * */
 
 import Actions.*;
 import Elements.*;
@@ -18,18 +18,13 @@ public class Main {
     public static void main(String[] args) {
         String username;
 
+        int hitResult = 0;
+
         Scanner scanner = new Scanner(System.in);
-        //singleton pattern used in Playfield class since only one instance of the playfield can exist at a time
+        //1initialise playfield
         PlayField field = PlayField.initialisePlayfield();
 
-        //singleton pattern used in CurrentGameState class since only one instance of the pinball game can exist at a time
-        //1 turn on pinball game
-        System.out.println("Please enter your name: \n");
-        username = scanner.nextLine();
-        CurrentGame currentGame = CurrentGame.startGame(username);
-
-
-        //2 initialise playfield
+        //2 add playfield elements and ball
         Ball ball = new Ball();
         Bumper bumper1 = new Bumper("Bumper 1", 200);
         Target target1 = new Target("Target 1", 400);
@@ -38,6 +33,7 @@ public class Main {
         field.add(target1);
         field.add(bigRamp);
 
+        //3 initialise possible actions
         HitBumper hitBumperAction = new HitBumper();
         hitBumperAction.addAction(new ScorePoints(bumper1));
 
@@ -47,10 +43,45 @@ public class Main {
 
         RunRamp runRamp = new RunRamp(bigRamp);
 
+
+        //start the game
+        System.out.println("Please enter your name: \n");
+        username = scanner.nextLine();
+        CurrentGame currentGame = CurrentGame.launchGame(username);
+
+
+        //3 insert coins
+
+
+        //4 start game
+
+
+        //5 calculate flip result
+
+
+
+        switch(hitResult){
+            case 1: ball.execute(hitBumperAction);
+            case 2: ball.execute(runRamp);
+            case 3: ball.execute(hitTarget);
+            default: break;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
         //3insert coins to top up credits
 
 
-        currentGame.insertCoin(0);
+        //currentGame.insertCoin(0);
 
 
 
@@ -60,12 +91,6 @@ public class Main {
         //5 game process
 
 
-
-        ball.execute(hitBumperAction);
-        ball.execute(hitBumperAction);
-        ball.execute(runRamp);
-        ball.execute(hitTarget);
-        ball.execute(runRamp);
 
 
         System.out.println("your current score is " + field.getElementsScore());

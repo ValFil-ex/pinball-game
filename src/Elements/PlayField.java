@@ -25,6 +25,9 @@ public class PlayField {
         playfieldElements.add(e);
     }
 
+    public List<PlayfieldElement> getPlayfieldElements() {
+        return playfieldElements;
+    }
 
     public int getElementsScore() {
         for (PlayfieldElement playfieldElement : playfieldElements){
@@ -32,4 +35,5 @@ public class PlayField {
         }
         return totalScore;
     }
+
 }

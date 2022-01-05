@@ -1,11 +1,21 @@
 package GameStates;
 
-public class NoCreditState implements GameStateInterface {
+import java.util.Scanner;
 
+public class NoCreditState implements GameStateInterface {
+    Scanner scanner = new Scanner(System.in);
 
     @Override
     public void enterState(CurrentGame currentGame) {
         System.out.println("Your current credit is 0. Please insert a coin");
+        int coins = scanner.nextInt();
+
+        if(coins>0){
+            currentGame.insertCoin(coins);
+        }else{
+            currentGame.turnOn();
+        }
+
     }
 
     @Override

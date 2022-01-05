@@ -1,9 +1,15 @@
 package GameStates;
-
+import java.util.Scanner;
 public class EndState implements GameStateInterface{
     @Override
     public void enterState(CurrentGame currentGame) {
-        System.out.println("This is your last chance to win!");
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("This is your last chance to win! Press 1 to hit the ball");
+        //new!!
+        int command = scanner.nextInt();
+        if(command == 1){
+            currentGame.calculateResult();
+        }
     }
 
     @Override
