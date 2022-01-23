@@ -1,7 +1,7 @@
 /*Pinball simulation
  * Singlton - to initialise CurrentGame
  * Singlton - to initialise Playfield
- * state pattern - to change states in CurrentGame (Gamestates package)
+ * state pattern - to toggle states in CurrentGame (Gamestates package)
  * Command pattern - to assign commands  when a ball hits some element; invoker: ball -> concrete command: action object (e.g.
  *   HitBumper) -> receiver: playfield element (e.g. bumper)
  * Composite patters - to build more complex command (together with command pattern). E.g. HitBumper launched OpenRamp and ScoreBumperPoints

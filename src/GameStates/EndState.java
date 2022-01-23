@@ -9,7 +9,7 @@ public class EndState implements GameStateInterface{
         if(totalScore>10000){
             this.onGameOver(currentGame);
         }else{
-            System.out.println("This is your last chance to win! Press 1 to hit the ball");
+            System.out.println("You're in super game! Press 1 to hit the ball");
             System.out.printf("Your current score is %d points! You need 10000 points to win the game!\n", totalScore);
             //new!!
             int command = scanner.nextInt();

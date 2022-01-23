@@ -24,7 +24,7 @@ public class GameController {
 
     private GameController(String username, PlayField playfield, Ball ball){
         this.username = username;
-        this. playfield = playfield;
+        this.playfield = playfield;
         this.ball = ball;
     }
 
