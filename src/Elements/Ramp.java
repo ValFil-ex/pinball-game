@@ -1,5 +1,7 @@
 package Elements;
 
+import Visitors.Visitor;
+
 public class Ramp implements PlayfieldElement{
     private int score;
     private String name;
@@ -30,8 +32,14 @@ public class Ramp implements PlayfieldElement{
         isOpen = open;
     }
 
+    @Override
     public void resetElement() {
         this.isOpen = false;
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
     }
 
 

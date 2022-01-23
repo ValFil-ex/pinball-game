@@ -2,6 +2,7 @@ package GameStates;
 
 import Elements.Ball;
 import Elements.PlayField;
+import Visitors.ResetVisitor;
 
 import java.util.Scanner;
 
@@ -14,6 +15,7 @@ public class GameController {
 
     private PlayField playfield;
     private Ball ball;
+    public ResetVisitor resetVisitor;
 
     private int credits = 0;
     private int timesLost = 0;
@@ -22,15 +24,16 @@ public class GameController {
 
     private int flipperHitResult = -1;
 
-    private GameController(String username, PlayField playfield, Ball ball){
+    private GameController(String username, PlayField playfield, Ball ball, ResetVisitor resetVisitor){
         this.username = username;
         this.playfield = playfield;
         this.ball = ball;
+        this.resetVisitor = resetVisitor;
     }
 
-    public static GameController launchGame(String username, PlayField playfield, Ball ball){
+    public static GameController launchGame(String username, PlayField playfield, Ball ball, ResetVisitor resetVisitor){
         if(instance == null){
-            instance = new GameController(username, playfield, ball);
+            instance = new GameController(username, playfield, ball, resetVisitor);
         }
         instance.turnOn();
         return instance;
@@ -68,7 +71,7 @@ public class GameController {
     protected void startGame(){
         this.credits--;
         timesLost=0;
-        playfield.resetElements(); //e.g. to close the ramp but the score remains
+        playfield.resetElements(resetVisitor); //e.g. to close the ramp but the score remains if the game continues
         pinballstate.onStart(this);
     }
 

@@ -1,5 +1,7 @@
 package Elements;
 
+import Visitors.Visitor;
+
 public class Bumper implements PlayfieldElement{
 
     private int score;
@@ -17,6 +19,11 @@ public class Bumper implements PlayfieldElement{
     @Override
     public void resetElement() {
 
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
     }
 
     public Bumper(String name, int points) {

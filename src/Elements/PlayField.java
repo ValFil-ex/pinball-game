@@ -1,6 +1,7 @@
 package Elements;
 
 import Actions.Action;
+import Visitors.ResetVisitor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,9 +52,9 @@ public class PlayField {
         }
     }
 
-    public void resetElements(){
+    public void resetElements(ResetVisitor resetVisitor){
         for (PlayfieldElement playfieldElement : playfieldElements){
-            playfieldElement.resetElement();
+            playfieldElement.accept(resetVisitor);
         }
     }
 

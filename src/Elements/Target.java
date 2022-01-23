@@ -1,6 +1,7 @@
 package Elements;
 
 import Actions.Action;
+import Visitors.Visitor;
 
 public class Target implements PlayfieldElement{
 
@@ -19,6 +20,11 @@ public class Target implements PlayfieldElement{
     @Override
     public void resetElement() {
 
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
     }
 
     public Target(String name, int points) {
