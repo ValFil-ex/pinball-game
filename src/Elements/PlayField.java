@@ -11,7 +11,6 @@ import java.util.List;
 public class PlayField {
 
     private static PlayField instance;
-    private int totalScore;
     private ScoreVisitor scoreVisitor;
     private ElementResetVisitor elementResetVisitor;
     private CountResetVisitor countResetVisitor;
