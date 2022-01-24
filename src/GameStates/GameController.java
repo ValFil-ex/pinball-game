@@ -3,6 +3,7 @@ package GameStates;
 import Elements.Ball;
 import Elements.PlayField;
 import Visitors.ResetVisitor;
+import Visitors.ScoreVisitor;
 
 import java.util.Scanner;
 
@@ -16,6 +17,7 @@ public class GameController {
     private PlayField playfield;
     private Ball ball;
     public ResetVisitor resetVisitor;
+
 
     private int credits = 0;
     private int timesLost = 0;

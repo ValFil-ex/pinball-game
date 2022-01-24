@@ -2,6 +2,7 @@ package Elements;
 
 import Actions.Action;
 import Visitors.ResetVisitor;
+import Visitors.ScoreVisitor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,17 +11,18 @@ public class PlayField {
 
     private static PlayField instance;
     private int totalScore;
+    private ScoreVisitor scoreVisitor;
 
     private List<PlayfieldElement>playfieldElements = new ArrayList<>();
     private List<Action>actions = new ArrayList<>();
 
-    private PlayField(){
-
+    private PlayField(ScoreVisitor scoreVisitor){
+this.scoreVisitor = scoreVisitor;
     }
 
-    public static PlayField initialisePlayfield(){
+    public static PlayField initialisePlayfield(ScoreVisitor scoreVisitor){
         if(instance == null){
-            instance = new PlayField();
+            instance = new PlayField(scoreVisitor);
         }
         return instance;
     }
@@ -39,11 +41,11 @@ public class PlayField {
 
 
     public int getElementsScore() {
-        totalScore = 0;
+        scoreVisitor.resetScoreCount();
         for (PlayfieldElement playfieldElement : playfieldElements){
-            totalScore += playfieldElement.getScore();
+            playfieldElement.accept(scoreVisitor);
         }
-        return totalScore;
+        return scoreVisitor.getScore();
     }
 
     public void resetElementsAndScore(){

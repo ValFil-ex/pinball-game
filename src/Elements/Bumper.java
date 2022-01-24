@@ -7,6 +7,7 @@ public class Bumper implements PlayfieldElement{
     private int score;
     private String name;
     private int points;
+    private int timesHit;
 
     public int getScore() {
         return score;
