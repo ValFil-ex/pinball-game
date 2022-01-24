@@ -11,7 +11,8 @@
 import Actions.*;
 import Elements.*;
 import GameStates.GameController;
-import Visitors.ResetVisitor;
+import Visitors.CountResetVisitor;
+import Visitors.ElementResetVisitor;
 import Visitors.ScoreVisitor;
 
 import java.util.Scanner;
@@ -24,7 +25,9 @@ public class Main {
 
         //1 initialise playfield
         ScoreVisitor scoreVisitor = new ScoreVisitor();
-        PlayField field = PlayField.initialisePlayfield(scoreVisitor);
+        ElementResetVisitor elementResetVisitor = new ElementResetVisitor();
+        CountResetVisitor countResetVisitor = new CountResetVisitor();
+        PlayField field = PlayField.initialisePlayfield(scoreVisitor, elementResetVisitor, countResetVisitor);
 
 
         //2 initialise playfield elements and ball; add to playfield
@@ -56,14 +59,11 @@ public class Main {
         field.setActions(hitTarget1);
         field.setActions(runRamp);
 
-        ResetVisitor resetVisitor = new ResetVisitor();
-
-
 
         //4 initialise game controller currentGame;
         System.out.println("Please enter your name: \n");
         username = scanner.nextLine();
-        GameController currentGame = GameController.launchGame(username, field, ball,resetVisitor);//initialises curentGame and sets it to
+        GameController currentGame = GameController.launchGame(username, field, ball);//initialises curentGame and sets it to
         // NoCreditstate
 
         /*5 insert coins -> in currentGame; noCreditState requests user input (inser coins)

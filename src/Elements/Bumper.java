@@ -4,17 +4,20 @@ import Visitors.Visitor;
 
 public class Bumper implements PlayfieldElement{
 
-    private int score;
     private String name;
     private int points;
     private int timesHit;
 
-    public int getScore() {
-        return score;
+    public int getPoints() {
+        return points;
     }
 
-    public void resetScore(){
-        this.score = 0;
+    public int getTimesHit() {
+        return timesHit;
+    }
+
+    public void resetCount(){
+        this.timesHit = 0;
     }
 
     @Override
@@ -34,7 +37,7 @@ public class Bumper implements PlayfieldElement{
 
     @Override
     public int score() {
-        score += points;
+        timesHit += 1;
         return points;
     }
 }

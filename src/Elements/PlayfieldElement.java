@@ -1,25 +1,19 @@
 package Elements;
 
-import Actions.Action;
 import Visitors.Visitor;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public interface PlayfieldElement {
 
 
-    int score();
+    int score(); //times hit count ++
 
-    int getScore();
+    void resetCount(); //when transition to next level, i.e. times hit count = 0
 
-    void resetScore(); //when transition to next level
+    void resetElement(); //when game is over but playing session continues, i.e. times hit count persists
 
-    void resetElement(); //when game is over but playing session continues
+    void accept( Visitor visitor);
 
-    public void accept( Visitor visitor);
+    int getTimesHit();
 
-
-
-
+    int getPoints();
 }

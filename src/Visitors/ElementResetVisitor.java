@@ -2,7 +2,7 @@ package Visitors;
 
 import Elements.PlayfieldElement;
 
-public class ResetVisitor implements Visitor{
+public class ElementResetVisitor implements Visitor{
     @Override
     public void visit(PlayfieldElement element) {
         element.resetElement();

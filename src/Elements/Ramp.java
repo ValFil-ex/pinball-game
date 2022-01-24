@@ -3,10 +3,10 @@ package Elements;
 import Visitors.Visitor;
 
 public class Ramp implements PlayfieldElement{
-    private int score;
     private String name;
     private int points;
     private boolean isOpen;
+    private int timesHit;
 
 
     public Ramp(String name, boolean isOpen, int points) {
@@ -15,13 +15,16 @@ public class Ramp implements PlayfieldElement{
         this.points = points;
     }
 
-    public int getScore() {
-        return score;
+    public void resetCount(){
+        this.timesHit = 0;
     }
 
-    public void resetScore(){
-        this.score = 0;
-        this.resetElement();
+    public int getPoints() {
+        return points;
+    }
+
+    public int getTimesHit() {
+        return timesHit;
     }
 
     public boolean isOpen() {
@@ -52,7 +55,7 @@ public class Ramp implements PlayfieldElement{
             isOpen = true;
             assignedPoints = 0;
         }
-        score += assignedPoints;
+        timesHit+=1;
         return assignedPoints;
     }
 }

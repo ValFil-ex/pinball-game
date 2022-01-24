@@ -11,7 +11,9 @@ public class ScoreVisitor implements Visitor{
 
     @Override
     public void visit(PlayfieldElement element) {
-        score+=element.getScore();
+        int timesHit = element.getTimesHit();
+        int points = element.getPoints();
+        score+=(timesHit*points);
     }
 
     public int getScore() {

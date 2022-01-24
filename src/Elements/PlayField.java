@@ -1,7 +1,8 @@
 package Elements;
 
 import Actions.Action;
-import Visitors.ResetVisitor;
+import Visitors.CountResetVisitor;
+import Visitors.ElementResetVisitor;
 import Visitors.ScoreVisitor;
 
 import java.util.ArrayList;
@@ -12,17 +13,21 @@ public class PlayField {
     private static PlayField instance;
     private int totalScore;
     private ScoreVisitor scoreVisitor;
+    private ElementResetVisitor elementResetVisitor;
+    private CountResetVisitor countResetVisitor;
 
     private List<PlayfieldElement>playfieldElements = new ArrayList<>();
     private List<Action>actions = new ArrayList<>();
 
-    private PlayField(ScoreVisitor scoreVisitor){
-this.scoreVisitor = scoreVisitor;
+    private PlayField(ScoreVisitor scoreVisitor, ElementResetVisitor elementResetVisitor, CountResetVisitor countResetVisitor){
+        this.scoreVisitor = scoreVisitor;
+        this.elementResetVisitor = elementResetVisitor;
+        this.countResetVisitor = countResetVisitor;
     }
 
-    public static PlayField initialisePlayfield(ScoreVisitor scoreVisitor){
+    public static PlayField initialisePlayfield(ScoreVisitor scoreVisitor, ElementResetVisitor elementResetVisitor, CountResetVisitor countResetVisitor){
         if(instance == null){
-            instance = new PlayField(scoreVisitor);
+            instance = new PlayField(scoreVisitor, elementResetVisitor, countResetVisitor);
         }
         return instance;
     }
@@ -50,13 +55,14 @@ this.scoreVisitor = scoreVisitor;
 
     public void resetElementsAndScore(){
         for (PlayfieldElement playfieldElement : playfieldElements){
-            playfieldElement.resetScore();
+            playfieldElement.accept(elementResetVisitor);
+            playfieldElement.accept(countResetVisitor);
         }
     }
 
-    public void resetElements(ResetVisitor resetVisitor){
+    public void resetElements(){
         for (PlayfieldElement playfieldElement : playfieldElements){
-            playfieldElement.accept(resetVisitor);
+            playfieldElement.accept(elementResetVisitor);
         }
     }
 
