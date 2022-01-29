@@ -1,9 +1,10 @@
-# pinball-game
-SAD exercise
+# Pinball-game - console simulation
 
-Pinball game simulation as design patterns exercise
+## Study project - Pinball game simulation as a design patterns exercise
 
-PATTERNS:
+**_See UML_Class_Diagram file for code structure reference._**
+
+### PATTERNS:
 
 - Singlton - to initialise GameController & Playfield
 - State pattern - to toggle states in CurrentGame (Gamestates package)
@@ -15,13 +16,13 @@ PATTERNS:
   element.  
 
 
-SAMPLE ACTIONS:
+### SAMPLE ACTIONS:
 
 - hit bumper: 200 points
 - hit target 1st time: 400 points and open ramp
 - hit ramp: if closed - 0 points; if open (by hitting the target) - 150 points. Once open, remains open until game over (4 balls)
 
-GAME RULES:
+### GAME RULES:
 - a game (3 balls + 1 super game) costs 1 credit
 - 3 balls can be lost in the initial round;
 - after 3 balls lost - super game with just one ball begins;
