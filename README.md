@@ -1,8 +1,10 @@
-# Pinball-game - console simulation
+# Pinball-game - console simulation 
 
 ## Study project - Pinball game simulation as a design patterns exercise
 
 **_See UML_Class_Diagram file for code structure reference._**
+
+### LANGUAGE: Java
 
 ### PATTERNS:
 
